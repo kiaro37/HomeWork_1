@@ -1,12 +1,18 @@
 package org.example;
 
+import java.sql.SQLOutput;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         //ex1();
         //ex2();
-        ex3();
+        //ex3();
+        ex4();
     }
 
     private static void ex1() {
@@ -56,9 +62,36 @@ public class Main {
                 if (i == j) {
                     arr[i][j] = value;
                 }
-                System.out.print(" " +arr[i][j]+ " ");
+                System.out.print(" " + arr[i][j] + " ");
             }
             System.out.println();
+        }
+    }
+
+    private static void ex4() {
+        //4. В консоли запросить имя пользователя. В зависимости от текущего времени, вывести приветствие вида:
+        //"Доброе утро, <Имя>!", если время от 05:00 до 11:59
+        //"Добрый день, <Имя>!", если время от 12:00 до 17:59;
+        //"Добрый вечер, <Имя>!", если время от 18:00 до 22:59;
+        //"Доброй ночи, <Имя>!", если время от 23:00 до 4:59
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Введите ваше имя: ");
+        String name = myScanner.nextLine();
+        LocalTime time = LocalTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH");
+        String timeNow = time.format(formatter);
+        int now = Integer.parseInt(timeNow);
+        if (now >= 5 && now < 12) {
+            System.out.println("Доброе утро," + name);
+        }
+        if (now >= 12 && now < 18) {
+            System.out.println("Добрый день," + name);
+        }
+        if (now >= 18 && now < 23) {
+            System.out.println("Добрый вечер," + name);
+        }
+        if (now >= 23 || now < 5) {
+            System.out.println("Доброй ночи," + name);
         }
     }
 }
