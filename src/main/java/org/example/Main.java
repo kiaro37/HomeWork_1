@@ -12,7 +12,8 @@ public class Main {
         //ex1();
         //ex2();
         //ex3();
-        ex4();
+        //ex4();
+        //ex5();
     }
 
     private static void ex1() {
@@ -93,5 +94,21 @@ public class Main {
         if (now >= 23 || now < 5) {
             System.out.println("Доброй ночи," + name);
         }
+    }
+
+    private static void ex5() {
+        //5.** Написать метод, которому на вход подается одномерный массив и число n (может быть положительным,
+        //или отрицательным), при этом метод должен сместить все элементы массива на n позиций. Элементы смещаются
+        //циклично. Для усложнения задачи нельзя пользоваться вспомогательными массивами.
+        //Примеры: [ 1, 2, 3 ] при n = 1 (на один вправо) -> [ 3, 1, 2 ];
+        //[ 3, 5, 6, 1] при n = -2 (на два влево) -> [ 6, 1, 3, 5 ].
+        //При каком n в какую сторону сдвиг можете выбирать сами.
+        int[] arr = new int[]{7, 4, 6, 9, 2};
+        int n = 3;
+        int length = arr.length;
+        int[] newArr = new int[length];
+        System.arraycopy(arr, n, newArr, 0, length - n);
+        System.arraycopy(arr, 0, newArr, length - n, n);
+        System.out.println(Arrays.toString(newArr));
     }
 }
