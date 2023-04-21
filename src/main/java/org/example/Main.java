@@ -14,6 +14,7 @@ public class Main {
         //ex3();
         //ex4();
         //ex5();
+        ex1_2();
     }
 
     private static void ex1() {
@@ -110,5 +111,41 @@ public class Main {
         System.arraycopy(arr, n, newArr, 0, length - n);
         System.arraycopy(arr, 0, newArr, length - n, n);
         System.out.println(Arrays.toString(newArr));
+    }
+
+    private static void ex1_2() {
+        /**
+        1. Дана строка sql-запроса "select * from students where ". Сформируйте часть WHERE этого запроса, используя
+        StringBuilder. Данные для фильтрации приведены ниже в виде json-строки.
+                Если значение null, то параметр не должен попадать в запрос.
+        Пример 1:
+        Параметры для фильтрации: {"name:Ivanov", "country:Russia", "city:Moscow", "age:null"}
+        Результат: SELECT * FROM USER WHERE name = 'Ivanov' and country = 'Russia' and city = 'Moscow';
+
+        Пример 2:
+        Параметры для фильтрации: {"name:null", "country:null", "city:null", "age:null"}
+        Результат: SELECT * FROM USER;
+        */
+
+        String name = "Alex";
+        String age = "18";
+        String country = "Germany";
+        String city = "Berlin";
+
+        StringBuilder sb = new StringBuilder("select * from students where ");
+        if (name != null) {
+            sb.append("name = '").append(name).append("' and ");
+        }
+        if (age != null) {
+            sb.append("age = '").append(age).append("' and ");
+        }
+        if (country != null) {
+            sb.append("country = '").append(country).append("' and ");
+        }
+        if (city != null) {
+            sb.append("city = '").append(city).append("' and ");
+        }
+        sb.delete(sb.length() - 5, sb.length());
+        System.out.println(sb);
     }
 }
