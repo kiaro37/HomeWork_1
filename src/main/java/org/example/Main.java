@@ -1,5 +1,6 @@
 package org.example;
 
+import java.io.File;
 import java.sql.SQLOutput;
 import java.sql.Time;
 import java.time.LocalTime;
@@ -14,7 +15,8 @@ public class Main {
         //ex3();
         //ex4();
         //ex5();
-        ex1_2();
+        //ex2_1();
+        ex2_2();
     }
 
     private static void ex1() {
@@ -113,19 +115,19 @@ public class Main {
         System.out.println(Arrays.toString(newArr));
     }
 
-    private static void ex1_2() {
+    private static void ex2_1() {
         /**
-        1. Дана строка sql-запроса "select * from students where ". Сформируйте часть WHERE этого запроса, используя
-        StringBuilder. Данные для фильтрации приведены ниже в виде json-строки.
-                Если значение null, то параметр не должен попадать в запрос.
-        Пример 1:
-        Параметры для фильтрации: {"name:Ivanov", "country:Russia", "city:Moscow", "age:null"}
-        Результат: SELECT * FROM USER WHERE name = 'Ivanov' and country = 'Russia' and city = 'Moscow';
+         1. Дана строка sql-запроса "select * from students where ". Сформируйте часть WHERE этого запроса, используя
+         StringBuilder. Данные для фильтрации приведены ниже в виде json-строки.
+         Если значение null, то параметр не должен попадать в запрос.
+         Пример 1:
+         Параметры для фильтрации: {"name:Ivanov", "country:Russia", "city:Moscow", "age:null"}
+         Результат: SELECT * FROM USER WHERE name = 'Ivanov' and country = 'Russia' and city = 'Moscow';
 
-        Пример 2:
-        Параметры для фильтрации: {"name:null", "country:null", "city:null", "age:null"}
-        Результат: SELECT * FROM USER;
-        */
+         Пример 2:
+         Параметры для фильтрации: {"name:null", "country:null", "city:null", "age:null"}
+         Результат: SELECT * FROM USER;
+         */
 
         String name = "Alex";
         String age = "18";
@@ -147,5 +149,29 @@ public class Main {
         }
         sb.delete(sb.length() - 5, sb.length());
         System.out.println(sb);
+    }
+
+    private static void ex2_2() {
+        /**
+         2.Напишите метод, который определит тип (расширение) файлов из текущей папки и выведет в консоль результат вида:
+         1 Расширение файла: txt
+         2 Расширение файла: pdf
+         3 Расширение файла:
+         4 Расширение файла: jpg
+         */
+
+        File expansion = new File("G:\\Мой диск\\Study_Develop\\Java\\expansions");
+        for (File item : expansion.listFiles()) {
+            if (item.isDirectory()) {
+                System.out.println(item.getName() + "\t folder");
+            } else {
+                String fileName = item.getName();
+                if (fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0) {
+                    System.out.println(item.getName() + "\t" + "Расширение файла: " +
+                            fileName.substring(fileName.lastIndexOf(".") + 1));
+                }
+            }
+        }
+
     }
 }
