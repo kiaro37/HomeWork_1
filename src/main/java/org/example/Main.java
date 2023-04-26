@@ -19,7 +19,8 @@ public class Main {
         //ex5();
         //ex2_1();
         //ex2_2();
-        ex3_1();
+        //ex3_1();
+        ex3_2();
     }
 
     private static void ex1() {
@@ -196,5 +197,44 @@ public class Main {
         System.out.println(list);
         list.removeIf(s -> s.matches("\\d+"));
         System.out.println(list);
+    }
+
+    private static void ex3_2() {
+        /**
+         2. Каталог товаров книжного магазина сохранен в виде двумерного списка List<ArrayList<String>> так,
+         что на 0й позиции каждого внутреннего списка содержится название жанра,
+         а на остальных позициях - названия книг. Напишите метод для заполнения данной структуры(можно через консоль).
+         Пример:
+         "Классика", "Преступление и наказание", "Война и мир", "Анна Каренина".
+         "Научная фантастика", "Солярис", "Ночной дозор", "Братья Стругацкие".
+         "Детектив", "Десять негритят".
+         "Фантастика", "Хроники Нарнии", "Гарри Поттер и философский камень", "Грозовой перевал".
+         */
+
+        List<ArrayList<String>> catalog = new ArrayList<>();
+        Scanner genreNums = new Scanner(System.in);
+        System.out.println("Введите количество жанров: ");
+        int genre = genreNums.nextInt();
+        for (int i = 0; i < genre; i++) {
+            ArrayList<String> booksOfCatalog = new ArrayList<>();
+            Scanner genreName = new Scanner(System.in);
+            System.out.println("Введите жанр: ");
+            String name = genreName.nextLine();
+            Scanner bookNums = new Scanner(System.in);
+            System.out.println("Введите количество книг в жанре: ");
+            int books = bookNums.nextInt();
+            booksOfCatalog.add(name);
+            for (int j = 0; j < books; j++) {
+                Scanner bookName = new Scanner(System.in);
+                System.out.println("Введите название книги: ");
+                String book = bookName.nextLine();
+                booksOfCatalog.add(book);
+            }
+            catalog.add(booksOfCatalog);
+        }
+        for (ArrayList<String> item:catalog
+             ) {
+            System.out.println(item);
+        }
     }
 }
