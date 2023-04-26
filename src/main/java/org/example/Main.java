@@ -6,7 +6,10 @@ import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -16,7 +19,7 @@ public class Main {
         //ex4();
         //ex5();
         //ex2_1();
-        ex2_2();
+        //ex2_2();
     }
 
     private static void ex1() {
@@ -128,27 +131,25 @@ public class Main {
          Параметры для фильтрации: {"name:null", "country:null", "city:null", "age:null"}
          Результат: SELECT * FROM USER;
          */
+        String jsonFilter = "\"name:Ivanov\" \"country:Russia\" \"city:Moscow\" \"age:null\"";
+        String[] parsejsonFilter = jsonFilter.split("\"?\\s+\"?|:\"?");
+        System.out.println(Arrays.toString(parsejsonFilter));
+        StringBuilder filterSb = new StringBuilder("select * from students where ");
 
-        String name = "Alex";
-        String age = "18";
-        String country = "Germany";
-        String city = "Berlin";
-
-        StringBuilder sb = new StringBuilder("select * from students where ");
-        if (name != null) {
-            sb.append("name = '").append(name).append("' and ");
+        for (int i = 0; i < parsejsonFilter.length - 1; i += 2) {
+            if (i + 1 < parsejsonFilter.length) {
+                String key = parsejsonFilter[i];
+                String value = parsejsonFilter[i + 1];
+                if (!value.equals("null\"") && !value.equals("null")) {
+                    if (filterSb.length() > 0) {
+                        filterSb.append(" and ");
+                    }
+                    filterSb.append(key).append(" = '").append(value).append("'");
+                }
+            }
         }
-        if (age != null) {
-            sb.append("age = '").append(age).append("' and ");
-        }
-        if (country != null) {
-            sb.append("country = '").append(country).append("' and ");
-        }
-        if (city != null) {
-            sb.append("city = '").append(city).append("' and ");
-        }
-        sb.delete(sb.length() - 5, sb.length());
-        System.out.println(sb);
+        String filter = filterSb.toString();
+        System.out.println(filter);
     }
 
     private static void ex2_2() {
