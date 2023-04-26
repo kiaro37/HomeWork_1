@@ -5,10 +5,9 @@ import java.sql.SQLOutput;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
+
+import static java.util.Collections.list;
 
 
 public class Main {
@@ -20,6 +19,7 @@ public class Main {
         //ex5();
         //ex2_1();
         //ex2_2();
+        ex3_1();
     }
 
     private static void ex1() {
@@ -174,5 +174,27 @@ public class Main {
             }
         }
 
+    }
+
+    private static void ex3_1() {
+        /**
+         1. Создать список типа ArrayList<String>. Поместить в него как строки, так и целые числа.
+         Пройти по списку, найти и удалить целые числа.
+         Пример: {"Яблоко", "11", "13", "Апельсин", "Дыня", "17"} -> {"Яблоко", "Апельсин", "Дыня"}
+         */
+
+        ArrayList<String> list = new ArrayList<>();
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Введите длину массива строк: ");
+        int len = myScanner.nextInt();
+        for (int i = 0; i < len; i++) {
+            Scanner myScan = new Scanner(System.in);
+            System.out.println("Введите строку: ");
+            String string = myScan.nextLine();
+            list.add(String.valueOf(string));
+        }
+        System.out.println(list);
+        list.removeIf(s -> s.matches("\\d+"));
+        System.out.println(list);
     }
 }
