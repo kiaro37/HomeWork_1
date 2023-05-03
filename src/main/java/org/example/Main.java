@@ -20,7 +20,7 @@ public class Main {
         //ex2_1();
         //ex2_2();
         //ex3_1();
-        ex3_2();
+        //ex3_2();
     }
 
     private static void ex1() {
@@ -237,4 +237,6 @@ public class Main {
             System.out.println(item);
         }
     }
+
+
 }
