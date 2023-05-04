@@ -21,7 +21,8 @@ public class Main {
         //ex2_2();
         //ex3_1();
         //ex3_2();
-        ex4_1();
+        //ex4_1();
+        //ex4_2();
     }
 
     private static void ex1() {
@@ -257,16 +258,29 @@ public class Main {
             if (string.equals("revert")) {
                 ArrayList.remove(0);
             } else if (string.equals("print")) {
-                for (String item : ArrayList
-                ) {
-                    System.out.printf(item + ",");
-                }
                 break;
             } else ArrayList.add(0, string);
         }
-        for (String item : ArrayList
-        ) {
-            System.out.printf(item + ", ");
+        System.out.println(ArrayList);
+    }
+
+    private static void ex4_2() {
+        /**
+         2. Пусть дан LinkedList с несколькими элементами. Реализуйте метод, который вернет “перевернутый” список.
+         */
+
+        List<String> LinkedList = new LinkedList<>();
+        List<String> newLinkedList = new LinkedList<>();
+        LinkedList.add("1");
+        LinkedList.add("2");
+        LinkedList.add("3");
+        LinkedList.add("hi");
+        LinkedList.add("4");
+        LinkedList.add("privet");
+        LinkedList.add("5");
+        for (int i = LinkedList.size() - 1; i >= 0; i--) {
+            newLinkedList.add(LinkedList.get(i));
         }
+        System.out.println(newLinkedList);
     }
 }
