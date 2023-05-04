@@ -21,6 +21,7 @@ public class Main {
         //ex2_2();
         //ex3_1();
         //ex3_2();
+        ex4_1();
     }
 
     private static void ex1() {
@@ -232,11 +233,40 @@ public class Main {
             }
             catalog.add(booksOfCatalog);
         }
-        for (ArrayList<String> item:catalog
-             ) {
+        for (ArrayList<String> item : catalog
+        ) {
             System.out.println(item);
         }
     }
 
-
+    private static void ex4_1() {
+        /**
+         1. Реализовать консольное приложение, которое:
+         Принимает от пользователя и “запоминает” строки.
+         Если введено print, выводит строки так, чтобы последняя введенная была первой в списке, а первая - последней.
+         Если введено revert, удаляет предыдущую введенную строку из памяти.
+         */
+        List<String> ArrayList = new ArrayList<>();
+        Scanner myScan = new Scanner(System.in);
+        System.out.println("Введите количество строк: ");
+        int stringNum = myScan.nextInt();
+        for (int i = 0; i < stringNum; i++) {
+            Scanner stringScan = new Scanner(System.in);
+            System.out.println("Введите строку: ");
+            String string = stringScan.nextLine();
+            if (string.equals("revert")) {
+                ArrayList.remove(0);
+            } else if (string.equals("print")) {
+                for (String item : ArrayList
+                ) {
+                    System.out.printf(item + ",");
+                }
+                break;
+            } else ArrayList.add(0, string);
+        }
+        for (String item : ArrayList
+        ) {
+            System.out.printf(item + ", ");
+        }
+    }
 }
