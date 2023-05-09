@@ -1,13 +1,14 @@
 package org.example;
 
 import java.io.File;
-import java.sql.SQLOutput;
-import java.sql.Time;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
-
-import static java.util.Collections.list;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Scanner;
 
 
 public class Main {
@@ -23,6 +24,7 @@ public class Main {
         //ex3_2();
         //ex4_1();
         //ex4_2();
+        ex5_1();
     }
 
     private static void ex1() {
@@ -282,5 +284,61 @@ public class Main {
             newLinkedList.add(LinkedList.get(i));
         }
         System.out.println(newLinkedList);
+    }
+
+    private static void ex5_1() {
+        /**
+         1. Реализуйте структуру телефонной книги с помощью HashMap, учитывая, что 1 человек может иметь несколько телефонов.
+         Пусть дан список сотрудников:
+         Иван Иванов
+         Светлана Петрова
+         Кристина Белова
+         Анна Мусина
+         Анна Крутова
+         Иван Юрин
+         Петр Лыков
+         Павел Чернов
+         Петр Чернышов
+         Мария Федорова
+         Марина Светлова
+         Мария Савина
+         Мария Рыкова
+         Марина Лугова
+         Анна Владимирова
+         Иван Мечников
+         Петр Петин
+         Иван Ежов
+
+         2. Написать программу, которая найдёт и выведет повторяющиеся имена с количеством повторений.
+         Отсортировать по убыванию популярности.
+         */
+
+        HashMap<String, List> telephoneBook = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Введите 1 для добаления нового абонента либо номера, " +
+                    "2 для печати справочника или 3 для выхода");
+            int choice = scanner.nextInt();
+            if (choice == 1) {
+                Scanner nameScan = new Scanner(System.in);
+                System.out.println("Введите имя: ");
+                String name = nameScan.nextLine();
+                Scanner numScan = new Scanner(System.in);
+                System.out.println("Введите номер телефона: ");
+                String number = numScan.nextLine();
+                List numbers;
+                if (telephoneBook.containsKey(name)) {
+                    numbers = telephoneBook.get(name);
+                } else {
+                    numbers = new ArrayList<>();
+                    telephoneBook.put(name, numbers);
+                }
+                numbers.add(number);
+            } else if (choice == 2) {
+                System.out.println(telephoneBook);
+            } else {
+                break;
+            }
+        }
     }
 }
