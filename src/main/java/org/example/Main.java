@@ -3,12 +3,7 @@ package org.example;
 import java.io.File;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Main {
@@ -340,5 +335,24 @@ public class Main {
                 break;
             }
         }
+        Set<String> keys = telephoneBook.keySet();
+        System.out.println(keys);
+
+        List<String> splitKeys = new ArrayList<>();
+        for (String item : keys
+        ) {
+            splitKeys.add(item.split(" ")[0]);
+        }
+        System.out.println(splitKeys);
+
+        HashMap<String, Integer> sortNames = new HashMap<>();
+        for (int i = 0; i < splitKeys.size(); i++) {
+            if (sortNames.containsKey(splitKeys.get(i))) {
+                sortNames.put(splitKeys.get(i), sortNames.get(splitKeys.get(i)) + 1);
+            } else {
+                sortNames.put(splitKeys.get(i), 1);
+            }
+        }
+        System.out.println(sortNames);
     }
 }
